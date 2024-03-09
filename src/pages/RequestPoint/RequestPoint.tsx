@@ -7,6 +7,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Feather as Icon } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   Button,
   CheckIcon,
@@ -75,7 +76,7 @@ const RequestPoint = () => {
   const [street, setStreet] = useState<string>('')
   const [selectedUf, setSelectedUf] = useState('0')
   const [selectedCity, setSelectedCity] = useState('0')
-
+  const [user, setUser] = useState({})
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
       .then(response => {
@@ -154,9 +155,20 @@ const RequestPoint = () => {
     loadPosition()
   })
 
+  // const getData = async () => {
+  //   try {
+  //     const user = await AsyncStorage.getItem('@storage_Key')
+  //     setUser(user)
+  //   } catch (error) {
+  //     // error reading value
+  //   }
+  // }
+
   async function handleRequest() {
     try {
       const items = selectedItems.join(',')
+      const user: any = await AsyncStorage.getItem('@storage_Key')
+      console.log(user)
       const data = {
         name,
         image: `data:image;base64,${imageBase64}`,
@@ -168,7 +180,10 @@ const RequestPoint = () => {
         city: selectedCity,
         country: 'Brasil',
         description,
-        street
+        street,
+        id_user: null,
+        email: null,
+        cellphone: null
       }
       await api.post('pontocoleta', data)
       handleNavigateToPoints()
@@ -314,7 +329,7 @@ const RequestPoint = () => {
                 activeOpacity={0.6}
               >
                 <SvgUri
-                  uri={`http://192.168.12.176:3333/uploads/${item.imageData}`}
+                  uri={`http://192.168.1.3:3400/uploads/${item.imageData}`}
                   // uri={`http://192.168.12.196:3333/uploads/${item.imageData}`}
                   height={30} width={30} />
                 <Text style={styles.itemTitle}>{item.title}</Text>

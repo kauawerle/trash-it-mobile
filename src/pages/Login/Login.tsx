@@ -29,14 +29,14 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function signinNavigate () {
+  function signinNavigate() {
     navigation.navigate('Register')
   }
-  function ReqNavigate () {
+  function ReqNavigate() {
     navigation.navigate('RequestPoint')
   }
 
-  async function handleLogin () {
+  async function handleLogin() {
     try {
       const user = await api.get('user/authent', { params: { email, password } })
       storeData(user)
@@ -58,65 +58,65 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView
-    style={{ flex: 1 }}
-    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-  >
-    <ImageBackground
-      source={require('../../assets/home-background.png')}
-      style={styles.container}
-      imageStyle={{ width: 274, height: 368 }}
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <View style={styles.main}>
-      {/* <Trashbin style={styles.image}/> */}
-      <Image style={styles.image} source={require('../../assets/recycle-bin-title.png')}/>
-        <View>
-          <Text style={styles.title}>Entre Na Sua Conta Para Solicitar Pontos De Coleta</Text>
+      <ImageBackground
+        source={require('../../assets/home-background.png')}
+        style={styles.container}
+        imageStyle={{ width: 274, height: 368 }}
+      >
+        <View style={styles.main}>
+          {/* <Trashbin style={styles.image}/> */}
+          <Image style={styles.image} source={require('../../assets/recycle-bin-title.png')} />
+          <View>
+            <Text style={styles.title}>Entre Na Sua Conta Para Solicitar Pontos De Coleta</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.footer}>
-      <Input
-        style={styles.input}
-        size="2xl"
-        variant="unstyled"
-        placeholder="E-mail"
-        value={email}
-        onChangeText={setEmail}
-        />
-
-      <Input
-      style={styles.input}
-      size="2xl"
-      variant="unstyled"
-      placeholder="Senha"
-      value={password}
-      onChangeText={setPassword}
-      type={show ? 'text' : 'password'} InputRightElement={<Pressable onPress={() => setShow(!show)}>
-          <Icon
-          as={<Feather name={show ? 'eye' : 'eye-off'} />}
-          size={5}
-          mr="2"
-          color="muted.400"
-          marginLeft={-8}
+        <View style={styles.footer}>
+          <Input
+            style={styles.input}
+            size="2xl"
+            variant="unstyled"
+            placeholder="E-mail"
+            value={email}
+            onChangeText={setEmail}
           />
-        </Pressable>}
-      />
 
-        <TouchableOpacity style={styles.button}
-        onPress={handleLogin}
-        >
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
-        <Button
-        style={styles.gotAcount}
-         variant="ghost"
-         onPress={signinNavigate}
-         >
-           <Text style={styles.gotAcount}>Não tenho conta</Text>
-        </Button>
-      </View>
-    </ImageBackground>
-  </KeyboardAvoidingView>
+          <Input
+            style={styles.input}
+            size="2xl"
+            variant="unstyled"
+            placeholder="Senha"
+            value={password}
+            onChangeText={setPassword}
+            type={show ? 'text' : 'password'} InputRightElement={<Pressable onPress={() => setShow(!show)}>
+              <Icon
+                as={<Feather name={show ? 'eye' : 'eye-off'} />}
+                size={5}
+                mr="2"
+                color="muted.400"
+                marginLeft={-8}
+              />
+            </Pressable>}
+          />
+
+          <TouchableOpacity style={styles.button}
+            onPress={handleLogin}
+          >
+            <Text style={styles.buttonText}>Entrar</Text>
+          </TouchableOpacity>
+          <Button
+            style={styles.gotAcount}
+            variant="ghost"
+            onPress={signinNavigate}
+          >
+            <Text style={styles.gotAcount}>Não tenho conta</Text>
+          </Button>
+        </View>
+      </ImageBackground>
+    </KeyboardAvoidingView>
   )
 }
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TRASHIT-MOBILE",
-    "slug": "TRASHIT-MOBILE",
+    "name": "TRASH-IT",
+    "slug": "TRASH-IT",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,15 +14,18 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#322153"
+      },
+      "package": "com.kauawdev.TRASHIT"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -42,6 +45,11 @@
         "wasm",
         "svg"
       ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b77c7495-1b37-42a3-8bfd-60df63be016c"
+      }
     }
   }
 }

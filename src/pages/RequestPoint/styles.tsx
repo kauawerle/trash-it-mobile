@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
@@ -22,7 +22,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 10,
     alignItems: 'center',
-    marginBottom: '20%'
+    marginBottom: '20%',
+  },
+  buttonCep: {
+    backgroundColor: '#34CB79',
+    height: 40,
+    flexDirection: 'row',
+    borderRadius: 10,
+    alignItems: 'center',
+    // marginBottom: '3%',
+    marginTop: '3%',
   },
   buttonText: {
     flex: 1,

@@ -14,7 +14,16 @@ export default StyleSheet.create({
     marginTop: '1%'
   },
   input: {
-    backgroundColor: '#fff'
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    height: 40,
+    paddingHorizontal: '3%'
+  },
+  CepInput:{
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    width:'60%',
+    paddingHorizontal: '3%'
   },
   button: {
     backgroundColor: '#34CB79',
@@ -22,16 +31,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 10,
     alignItems: 'center',
-    marginBottom: '20%',
+    marginBottom: '30%',
   },
   buttonCep: {
     backgroundColor: '#34CB79',
-    height: 40,
-    flexDirection: 'row',
+    flexDirection:'row',
     borderRadius: 10,
     alignItems: 'center',
-    // marginBottom: '3%',
-    marginTop: '3%',
+    marginHorizontal: '5%',
   },
   buttonText: {
     flex: 1,
@@ -39,7 +46,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#FFF',
     // fontFamily: 'Roboto_500Medium',
-    fontSize: 16
+    fontSize: 16,
+    marginVertical: '2%'
   },
   item: {
     backgroundColor: '#fff',
@@ -81,7 +89,7 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     padding: '1%',
     borderRadius: 8,
-    marginVertical: 30,
+    marginVertical: '10%',
     height: '20%'
   },
   camStack: {
@@ -119,5 +127,9 @@ export default StyleSheet.create({
   },
   select: {
     marginVertical: '3%'
+  },
+  cepView: {
+    justifyContent: 'space-between',
+    flexDirection:'row'
   }
 })

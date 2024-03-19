@@ -12,7 +12,6 @@ import {
   Button,
   FormControl,
   HStack,
-  Input,
   Text,
   TextArea,
   VStack,
@@ -26,6 +25,7 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
+  TextInput
 } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
@@ -80,33 +80,6 @@ const RequestPoint = () => {
   const [cepUser, setCepUser] = useState("");
 
   const [user, setUser] = useState({});
-  // useEffect(() => {
-  //   axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
-  //     .then(response => {
-  //       const ufInitials = response.data.map(uf => uf.sigla)
-  //       setUf(ufInitials)
-  //     })
-  // }, [])
-
-  // useEffect(() => {
-  //   if (selectedUf === '0') {
-  //     return
-  //   }
-  //   axios
-  //     .get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
-  //     .then(response => {
-  //       const cityNames = response.data.map(city => city.nome)
-  //       setCity(cityNames)
-  //     })
-  // }, [selectedUf])
-
-  // function handleSelectUf(uf: string) {
-  //   setSelectedUf(uf)
-  // }
-
-  // function handleSelectCity(city: string) {
-  //   setSelectedCity(city)
-  // }
 
   async function getCep() {
     const userCep = await api.get(
@@ -169,20 +142,10 @@ const RequestPoint = () => {
     loadPosition();
   });
 
-  // const getData = async () => {
-  //   try {
-  //     const user = await AsyncStorage.getItem('@storage_Key')
-  //     setUser(user)
-  //   } catch (error) {
-  //     // error reading value
-  //   }
-  // }
-
   async function handleRequest() {
     try {
       const items = selectedItems.join(",");
       const user: any = await AsyncStorage.getItem("@storage_Key");
-      // console.log(user)
       const data = {
         name,
         image: `data:image;base64,${imageBase64}`,
@@ -203,7 +166,6 @@ const RequestPoint = () => {
       handleNavigateToPoints();
     } catch (err) {
       alert(JSON.stringify(err));
-      // console.log(err)
     }
   }
 
@@ -223,6 +185,7 @@ const RequestPoint = () => {
           <Text style={styles.title}>Solicitar Ponto de coleta</Text>
         </HStack>
 
+        <FormControl w="100%">
         <Button
           style={!image ? styles.camBtn : styles.anxImg}
           onPress={async () => await pickImage()}
@@ -278,43 +241,33 @@ const RequestPoint = () => {
 
         <Text style={styles.title}>Dados</Text>
 
-        <FormControl w="100%">
           <FormControl.Label>Nome</FormControl.Label>
-          <Input style={styles.input} onChangeText={setName} />
-        </FormControl>
+          <TextInput style={styles.input} onChangeText={setName} />
 
-        <FormControl w="100%">
           <FormControl.Label>Informar motivo da solicitação</FormControl.Label>
           <TextArea
             autoCompleteType={false}
-            style={styles.input}
+            backgroundColor={'white'}
             onChangeText={setDescription}
           />
-        </FormControl>
 
         <View style={styles.select}>
-          <FormControl w="100%">
-            <FormControl.Label>CEP</FormControl.Label>
-            <Input style={styles.input} onChangeText={setCepUser} />
+          <FormControl.Label>CEP</FormControl.Label>
+            <View style={styles.cepView}>
+            <TextInput style={styles.CepInput} onChangeText={setCepUser} />
             <Button style={styles.buttonCep} onPress={getCep}>
               Validar Cep
             </Button>
-          </FormControl>
+            </View>
 
-          <FormControl w="100%">
             <FormControl.Label>Cidade</FormControl.Label>
-            <Input style={styles.input} value={selectedCity} />
-          </FormControl>
+            <TextInput style={styles.input} value={selectedCity} />
 
-          <FormControl w="100%">
             <FormControl.Label>Uf</FormControl.Label>
-            <Input style={styles.input} value={selectedUf} />
-          </FormControl>
+            <TextInput style={styles.input} value={selectedUf} />
 
-          <FormControl w="100%">
             <FormControl.Label>Endereço</FormControl.Label>
-            <Input style={styles.input} onChangeText={setStreet} />
-          </FormControl>
+            <TextInput style={styles.input} onChangeText={setStreet} />
         </View>
 
         <View style={styles.itemsContainer}>
@@ -330,7 +283,7 @@ const RequestPoint = () => {
                 activeOpacity={0.6}
               >
                 <SvgUri
-                  uri={`http://192.168.1.3:3400/uploads/${item.imageData}`}
+                  uri={`http://192.168.30.168:3400/uploads/${item.imageData}`}
                   // uri={`http://192.168.12.196:3333/uploads/${item.imageData}`}
                   height={30}
                   width={30}
@@ -344,6 +297,7 @@ const RequestPoint = () => {
         <Button style={styles.button} onPress={handleRequest}>
           <Text style={styles.buttonText}>Solicitar ponto</Text>
         </Button>
+        </FormControl>
       </ScrollView>
     </KeyboardAvoidingView>
   );

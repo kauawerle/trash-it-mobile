@@ -74,5 +74,8 @@ export default StyleSheet.create({
   gotAcount: {
     color: '#fff',
     justifyContent: 'flex-start'
+  },
+  errorMessage: {
+    color: 'red'
   }
 })

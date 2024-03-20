@@ -38,6 +38,8 @@ const Register = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [erro, setErro] = useState('')
+
 
   function loginNavigate () {
     navigation.navigate('Login')
@@ -53,8 +55,8 @@ const Register = () => {
     try {
       await api.post('user', data)
       loginNavigate()
-    } catch (err) {
-      alert(JSON.stringify(err))
+    } catch (err:any) {
+      setErro(err.response.data.message)
     }
   }
 
@@ -128,6 +130,8 @@ const Register = () => {
               />
             </FormControl>
           </Stack>
+
+          <Text style={styles.errorMessage}>{erro}</Text>
 
           <TouchableOpacity
             style={styles.button}

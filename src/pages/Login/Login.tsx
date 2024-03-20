@@ -28,6 +28,7 @@ const Login = () => {
   const [show, setShow] = React.useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [erro, setErro] = useState('')
 
   function signinNavigate() {
     navigation.navigate('Register')
@@ -38,13 +39,12 @@ const Login = () => {
 
   async function handleLogin() {
     try {
-      const user = await api.get('user/authent', { params: { email, password } })
+      const user:any = await api.get('user/authent', { params: { email, password } })
       storeData(user)
       ReqNavigate()
-    } catch (err) {
-      alert(
-        JSON.stringify(err)
-      )
+    } catch (err:any) {
+      console.log(err.response.data.message)
+      setErro(err.response.data.message)
     }
   }
 
@@ -101,6 +101,8 @@ const Login = () => {
               />
             </Pressable>}
           />
+
+          <Text style={styles.errorMessage}>{erro}</Text>
 
           <TouchableOpacity style={styles.button}
             onPress={handleLogin}

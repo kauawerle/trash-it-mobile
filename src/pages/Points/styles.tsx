@@ -5,8 +5,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 32,
-    paddingTop: 20 + Constants.statusBarHeight,
-    backgroundColor: '#322153'
+    padding: Constants.statusBarHeight*1.5,
+    backgroundColor: '#322153',
+    height:'100%'
 
   },
 
@@ -25,7 +26,7 @@ export default StyleSheet.create({
   },
 
   mapContainer: {
-    flex: 1,
+    // flex: 1,
     width: '100%',
     borderRadius: 10,
     overflow: 'hidden',
@@ -89,7 +90,6 @@ export default StyleSheet.create({
   },
 
   mapMarkerTitle: {
-    flex: 1,
     // fontFamily: 'Roboto_400Regular',
     color: '#FFF',
     fontSize: 13,

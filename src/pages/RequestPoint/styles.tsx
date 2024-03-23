@@ -131,5 +131,8 @@ export default StyleSheet.create({
   cepView: {
     justifyContent: 'space-between',
     flexDirection:'row'
+  },
+  errorMessage: {
+    color: 'red'
   }
 })

@@ -81,6 +81,9 @@ const RequestPoint = () => {
 
   const [user, setUser] = useState({});
 
+  const [erro, setErro] = useState('')
+
+
   async function getCep() {
     const userCep = await api.get(
       `https://brasilapi.com.br/api/cep/v1/${cepUser}`
@@ -164,8 +167,8 @@ const RequestPoint = () => {
       };
       await api.post("pontocoleta", data);
       handleNavigateToPoints();
-    } catch (err) {
-      alert(JSON.stringify(err));
+    } catch (err:any) {
+      setErro(err.response.data.message)
     }
   }
 
@@ -293,6 +296,9 @@ const RequestPoint = () => {
             ))}
           </ScrollView>
         </View>
+
+        <Text style={styles.errorMessage}>{erro}</Text>
+
 
         <Button style={styles.button} onPress={handleRequest}>
           <Text style={styles.buttonText}>Solicitar ponto</Text>

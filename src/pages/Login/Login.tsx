@@ -43,7 +43,6 @@ const Login = () => {
       storeData(user)
       ReqNavigate()
     } catch (err:any) {
-      console.log(err.response.data.message)
       setErro(err.response.data.message)
     }
   }
